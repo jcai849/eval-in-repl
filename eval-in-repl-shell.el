@@ -60,7 +60,7 @@
                    #'eir-shell-repl
                    ;; fun-execute
                    #'comint-send-input)
-  "Send expression to *shell* and have it evaluated.")
+  "Send expression to 'eir-shell-buffer-name and have it evaluated.")
 
 ;;; eir-eval-in-shell
 ;;;###autoload
