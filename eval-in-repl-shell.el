@@ -1,8 +1,10 @@
 ;;; eval-in-repl-shell.el --- ESS-like eval for shell  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Kazuki YOSHIDA, Terje Larsen
+;; Copyright (C) 2014-2019 Kazuki YOSHIDA,
+;;               2017 Terje Larsen
 
-;; Author: Kazuki YOSHIDA <kazukiyoshida@mail.harvard.edu>, Terje Larsen <terlar@gmail.com>
+;; Author: Kazuki YOSHIDA <kazukiyoshida@mail.harvard.edu>,
+;;         Terje Larsen <terlar@gmail.com>
 ;; Keywords: tools, convenience
 ;; URL: https://github.com/kaz-yos/eval-in-repl
 ;; Version: 0.9.6
@@ -67,16 +69,16 @@
   (interactive)
   ;; Define local variables
   (let* (;; Save current point
-        (initial-point (point))
-        ;; Shell buffer
-        (buffer-name (format "*shell [%s]*" (symbol-name sh-shell))))
+         (initial-point (point))
+         ;; Shell buffer
+         (buffer-name (format "*shell [%s]*" (symbol-name sh-shell))))
     ;;
     (eir-repl-start (regexp-quote buffer-name) #'eir-shell-repl t)
 
     ;; Check if selection is present
     (if (and transient-mark-mode mark-active)
-       ;; If selected, send region
-       (eir-send-to-shell (buffer-substring-no-properties (point) (mark)))
+        ;; If selected, send region
+        (eir-send-to-shell (buffer-substring-no-properties (point) (mark)))
 
       ;; If not selected, do all the following
       ;; Move to the beginning of line
@@ -87,9 +89,9 @@
       (end-of-line)
       ;; Send region if not empty
       (if (not (equal (point) (mark)))
-         (eir-send-to-shell (buffer-substring-no-properties (point) (mark)))
-       ;; If empty, deselect region
-       (setq mark-active nil))
+          (eir-send-to-shell (buffer-substring-no-properties (point) (mark)))
+        ;; If empty, deselect region
+        (setq mark-active nil))
 
       ;; Move to the next statement code if jumping
       (if eir-jump-after-eval
